@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>مکالمه درس اول: Talking about Languages | Vision 2</title>
+    <style>
+        @font-face {
+            font-family: 'Dana';
+            src: url('../fonts/dana-regular.woff2') format('woff2'),
+                 url('../fonts/dana-regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Dana';
+            src: url('../fonts/dana-bold.woff2') format('woff2'),
+                 url('../fonts/dana-bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Vazir';
+            src: url('../fonts/Vazir.woff2') format('woff2'),
+                 url('../fonts/Vazir.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Vazir';
+            src: url('../fonts/Vazir-Bold.woff2') format('woff2'),
+                 url('../fonts/Vazir-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Gheytoon';
+            src: url('../fonts/Gheytoon Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Gheytoon';
+            src: url('../fonts/Gheytoon Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg: #070b14;
+            --surface: rgba(17, 24, 39, 0.72);
+            --border: rgba(255, 255, 255, 0.1);
+            --accent: #38bdf8;
+            --accent-2: #818cf8;
+            --warm: #fbbf24;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --step-duration: 15000ms;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Dana', 'Vazir', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        button, a {
+            font-family: inherit;
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        button {
+            border: none;
+            background: none;
+        }
+
+        .en {
+            direction: ltr;
+            unicode-bidi: isolate;
+            display: inline-block;
+            font-family: 'Dana', 'Vazir', sans-serif;
+        }
+
+        .ico {
+            display: inline-block;
+            width: 1.15em;
+            height: 1.15em;
+            background-color: currentColor;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+
+        /* Ambient Background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(110px);
+            opacity: 0.2;
+            transform: translateZ(0);
+            animation: floatBlob 18s ease-in-out infinite alternate;
+        }
+
+        .blob-1 {
+            width: 52vmax;
+            height: 52vmax;
+            background: var(--accent);
+            top: -18vmax;
+            right: -12vmax;
+        }
+
+        .blob-2 {
+            width: 48vmax;
+            height: 48vmax;
+            background: var(--accent-2);
+            bottom: -20vmax;
+            left: -12vmax;
+            animation-delay: -9s;
+        }
+
+        @keyframes floatBlob {
+            0% { transform: translate3d(0, 0, 0) scale(1); }
+            100% { transform: translate3d(-4vmax, 4vmax, 0) scale(1.08); }
+        }
+
+        /* Top 15s Timer Bar */
+        .auto-timer-track {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.06);
+            z-index: 40;
+            pointer-events: none;
+        }
+
+        .auto-timer-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            transition: none;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 30;
+            padding: calc(14px + env(safe-area-inset-top)) 18px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .header-left, .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+        }
+
+        .ctrl-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .ctrl-btn:hover {
+            background: rgba(30, 41, 59, 0.92);
+            border-color: rgba(56, 189, 248, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .ctrl-btn.icon-only {
+            width: 42px;
+            padding: 0;
+            justify-content: center;
+        }
+
+        .ctrl-btn.muted {
+            color: var(--muted);
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .step-badge {
+            height: 42px;
+            padding: 0 14px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--muted);
+        }
+
+        /* Preloader / Fullscreen Start Modal */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: radial-gradient(circle at top, #132238 0%, #070b14 70%);
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.65s ease, visibility 0.65s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .pre-card {
+            width: 100%;
+            max-width: 440px;
+            padding: 32px 24px;
+            border-radius: 28px;
+            background: rgba(15, 23, 42, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .pre-tag {
+            align-self: center;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .pre-title {
+            font-family: 'Gheytoon', 'Dana', 'Vazir', sans-serif;
+            font-size: clamp(1.45rem, 4.5vw, 1.9rem);
+            line-height: 1.4;
+            color: var(--text);
+        }
+
+        .pre-sub {
+            font-size: 0.92rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .audio-choice-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .choice-btn {
+            padding: 12px 14px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .choice-btn.active {
+            background: rgba(56, 189, 248, 0.16);
+            border-color: var(--accent);
+            color: var(--text);
+            box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.25);
+        }
+
+        .start-btn {
+            width: 100%;
+            height: 52px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #04101d;
+            font-size: 1rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 14px 30px rgba(56, 189, 248, 0.28);
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+        }
+
+        .start-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Staircase Viewport */
+        .viewport {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .stair {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: calc(76px + env(safe-area-inset-top)) 16px calc(64px + env(safe-area-inset-bottom));
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translate3d(0, 48px, 0) scale(0.97);
+            transition:
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.5s ease,
+                visibility 0.65s ease;
+            will-change: transform, opacity;
+        }
+
+        .stair.prev {
+            opacity: 0;
+            visibility: hidden;
+            transform: translate3d(0, -48px, 0) scale(0.97);
+        }
+
+        .stair.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        .stair-inner {
+            width: 100%;
+            max-width: 720px;
+            max-height: 100%;
+            overflow-y: auto;
+            scrollbar-width: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 4px 2px;
+        }
+
+        .stair-inner::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Dialogue / Intro Card */
+        .step-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 26px;
+            padding: 24px 22px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .step-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .speaker-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 14px;
+            border-radius: 999px;
+            font-size: 0.84rem;
+            font-weight: 700;
+        }
+
+        .speaker-narration {
+            background: rgba(251, 191, 36, 0.14);
+            color: var(--warm);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .speaker-meysam {
+            background: rgba(56, 189, 248, 0.14);
+            color: var(--accent);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .speaker-saberian {
+            background: rgba(129, 140, 248, 0.16);
+            color: #a5b4fc;
+            border: 1px solid rgba(129, 140, 248, 0.35);
+        }
+
+        .audio-status {
+            font-size: 0.78rem;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .audio-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--muted);
+        }
+
+        .audio-status.playing {
+            color: var(--accent);
+        }
+
+        .audio-status.playing .audio-dot {
+            background: var(--accent);
+            animation: pulseDot 1s ease-in-out infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.45); opacity: 0.5; }
+        }
+
+        .line-en {
+            direction: ltr;
+            text-align: left;
+            font-size: clamp(1.15rem, 3.4vw, 1.55rem);
+            font-weight: 700;
+            line-height: 1.55;
+            color: var(--text);
+        }
+
+        .line-fa {
+            font-size: clamp(0.95rem, 2.6vw, 1.12rem);
+            line-height: 1.8;
+            color: #cbd5e1;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Word Bank Box */
+        .word-bank {
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 22px;
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .wb-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--warm);
+        }
+
+        .wb-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 8px;
+        }
+
+        .wb-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 9px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .wb-word {
+            direction: ltr;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        .wb-meaning {
+            font-size: 0.84rem;
+            color: #e2e8f0;
+            text-align: left;
+        }
+
+        /* End Screen */
+        .end-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 36px 24px;
+            backdrop-filter: blur(16px);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .end-title {
+            font-family: 'Gheytoon', 'Dana', 'Vazir', sans-serif;
+            font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+            color: var(--text);
+        }
+
+        .end-desc {
+            font-size: 0.95rem;
+            color: var(--muted);
+            max-width: 400px;
+            line-height: 1.75;
+        }
+
+        .end-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        .btn-primary {
+            height: 46px;
+            padding: 0 22px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #04101d;
+            font-weight: 700;
+            font-size: 0.92rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-secondary {
+            height: 46px;
+            padding: 0 20px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: var(--text);
+            font-weight: 700;
+            font-size: 0.92rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Bottom Hint */
+        .footer-hint {
+            position: fixed;
+            bottom: calc(12px + env(safe-area-inset-bottom));
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 25;
+            font-size: 0.76rem;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 520px) {
+            .ctrl-btn .btn-label {
+                display: none;
+            }
+            .step-card {
+                padding: 20px 16px;
+                border-radius: 22px;
+            }
+            .wb-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="ambient">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+</div>
+
+<div class="auto-timer-track">
+    <div class="auto-timer-fill" id="timerBar"></div>
+</div>
+
+<header class="header">
+    <div class="header-left">
+        <a href="../lesson-1/lesson1-menu.html" class="ctrl-btn" aria-label="بازگشت به منوی درس">
+            <span class="ico" style="-webkit-mask-image:url('icons/arrow-right-solid.svg');mask-image:url('icons/arrow-right-solid.svg')"></span>
+            <span class="btn-label">منوی درس</span>
+        </a>
+        <div class="step-badge" id="stepCounter">0 / 15</div>
+    </div>
+    <div class="header-right">
+        <button type="button" class="ctrl-btn icon-only" id="soundBtn" onclick="toggleSound()" aria-label="قطع یا وصل صدا">
+            <span class="ico" id="soundIcon" style="-webkit-mask-image:url('icons/volume-high-solid.svg');mask-image:url('icons/volume-high-solid.svg')"></span>
+        </button>
+    </div>
+</header>
+
+<!-- Preloader / Start Popup -->
+<div class="preloader" id="preloader">
+    <div class="pre-card">
+        <span class="pre-tag">درس اول · Conversation</span>
+        <h1 class="pre-title">آماده‌اید مکالمه را شروع کنید؟</h1>
+        <p class="pre-sub">گفت‌وگوی میثم و آقای صابریان درباره زبان‌ها؛ به صورت پله‌ای با اسکرول یا حرکت خودکار هر ۳۰ ثانیه.</p>
+
+        <div class="audio-choice-group" role="group" aria-label="انتخاب وضعیت صدا">
+            <button type="button" class="choice-btn active" id="optSoundOn" onclick="setStartSound(true)">
+                <span class="ico" style="-webkit-mask-image:url('icons/volume-high-solid.svg');mask-image:url('icons/volume-high-solid.svg')"></span>
+                <span>با صدا</span>
+            </button>
+            <button type="button" class="choice-btn" id="optSoundOff" onclick="setStartSound(false)">
+                <span class="ico" style="-webkit-mask-image:url('icons/volume-xmark-solid.svg');mask-image:url('icons/volume-xmark-solid.svg')"></span>
+                <span>بدون صدا</span>
+            </button>
+        </div>
+
+        <button type="button" class="start-btn" onclick="startExperience()">
+            <span class="ico" style="-webkit-mask-image:url('icons/play-solid.svg');mask-image:url('icons/play-solid.svg')"></span>
+            <span>شروع مکالمه</span>
+        </button>
+    </div>
+</div>
+
+<main class="viewport" id="viewport"></main>
+
+<div class="footer-hint" id="footerHint">
+    <span>اسکرول کنید یا هر ۳۰ ثانیه به پله بعد می‌رود</span>
+    <span class="ico" style="-webkit-mask-image:url('icons/arrow-down-solid.svg');mask-image:url('icons/arrow-down-solid.svg')"></span>
+</div>
+
+<script>
+const STEP_MS = 30000;
+const AUDIO_DELAY_MS = 500;
+
+const conversationData = [
+    {
+        type: 'intro',
+        speaker: 'مقدمه مکالمه',
+        speakerClass: 'speaker-narration',
+        audio: 'sounds/l1-conv-01.mp3',
+        en: 'Babak Saberian is a translator who works for IRIB. Today, he is hosting Meysam in his office. Meysam is a high school student. He is interviewing Mr. Saberian for his school project.',
+        fa: 'بابک صابریان مترجمی است که برای صداوسیما کار می‌کند. امروز او میزبان میثم در دفتر کارش است. میثم دانش‌آموز دبیرستانی است و برای پروژه مدرسه‌اش با آقای صابریان مصاحبه می‌کند.',
+        words: [
+            { word: 'translator', meaning: 'مترجم' },
+            { word: 'host', meaning: 'میزبانی کردن' },
+            { word: 'interview', meaning: 'مصاحبه کردن' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Meysam',
+        speakerClass: 'speaker-meysam',
+        audio: 'sounds/l1-conv-02.mp3',
+        en: 'Thank you Mr. Saberian for inviting me to your office.',
+        fa: 'ممنون آقای صابریان که مرا به دفترتان دعوت کردید.',
+        words: [
+            { word: 'invite', meaning: 'دعوت کردن' },
+            { word: 'office', meaning: 'دفتر کار' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Mr. Saberian',
+        speakerClass: 'speaker-saberian',
+        audio: 'sounds/l1-conv-03.mp3',
+        en: "You're welcome!",
+        fa: 'خواهش می‌کنم!',
+        words: [
+            { word: "You're welcome", meaning: 'خواهش می‌کنم' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Meysam',
+        speakerClass: 'speaker-meysam',
+        audio: 'sounds/l1-conv-04.mp3',
+        en: 'I heard you know three languages. Is that right?',
+        fa: 'شنیدم سه زبان بلد هستید. درست است؟',
+        words: [
+            { word: 'hear', meaning: 'شنیدن' },
+            { word: 'language', meaning: 'زبان' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Mr. Saberian',
+        speakerClass: 'speaker-saberian',
+        audio: 'sounds/l1-conv-05.mp3',
+        en: 'Well, actually four languages.',
+        fa: 'خب، در واقع چهار زبان.',
+        words: [
+            { word: 'actually', meaning: 'در واقع' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Meysam',
+        speakerClass: 'speaker-meysam',
+        audio: 'sounds/l1-conv-06.mp3',
+        en: 'Four! Really?! What languages do you know?',
+        fa: 'چهار تا! واقعاً؟! چه زبان‌هایی بلد هستید؟',
+        words: [
+            { word: 'really', meaning: 'واقعاً' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Mr. Saberian',
+        speakerClass: 'speaker-saberian',
+        audio: 'sounds/l1-conv-07.mp3',
+        en: 'Besides my mother tongue, Persian, I know English, French and Russian well.',
+        fa: 'علاوه بر زبان مادری‌ام، فارسی، انگلیسی، فرانسوی و روسی را خوب می‌دانم.',
+        words: [
+            { word: 'besides', meaning: 'علاوه بر' },
+            { word: 'mother tongue', meaning: 'زبان مادری' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Meysam',
+        speakerClass: 'speaker-meysam',
+        audio: 'sounds/l1-conv-08.mp3',
+        en: 'Interesting! And when did you learn them?',
+        fa: 'جالب است! و آن‌ها را چه زمانی یاد گرفتید؟',
+        words: [
+            { word: 'interesting', meaning: 'جالب' },
+            { word: 'learn', meaning: 'یاد گرفتن' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Mr. Saberian',
+        speakerClass: 'speaker-saberian',
+        audio: 'sounds/l1-conv-09.mp3',
+        en: 'I began learning English at school when I was thirteen. Then I began learning French in a language institute when I was fifteen. And I learned Russian when I was a university student in Moscow.',
+        fa: 'وقتی سیزده‌ساله بودم در مدرسه یادگیری انگلیسی را شروع کردم. بعد وقتی پانزده‌ساله بودم در یک آموزشگاه زبان یادگیری فرانسوی را آغاز کردم. و وقتی دانشجو در مسکو بودم روسی یاد گرفتم.',
+        words: [
+            { word: 'begin', meaning: 'شروع کردن' },
+            { word: 'institute', meaning: 'آموزشگاه / مؤسسه' },
+            { word: 'university', meaning: 'دانشگاه' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Meysam',
+        speakerClass: 'speaker-meysam',
+        audio: 'sounds/l1-conv-10.mp3',
+        en: 'Can you use all of them fluently?',
+        fa: 'آیا می‌توانید از همه آن‌ها به روانی استفاده کنید؟',
+        words: [
+            { word: 'fluently', meaning: 'به روانی / روان' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Mr. Saberian',
+        speakerClass: 'speaker-saberian',
+        audio: 'sounds/l1-conv-11.mp3',
+        en: 'I know all of them well, but I use English more.',
+        fa: 'همه آن‌ها را خوب می‌دانم، اما از انگلیسی بیشتر استفاده می‌کنم.',
+        words: [
+            { word: 'well', meaning: 'خوب / به‌خوبی' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Meysam',
+        speakerClass: 'speaker-meysam',
+        audio: 'sounds/l1-conv-12.mp3',
+        en: 'OK. Do you think language learning should start as early as possible?',
+        fa: 'باشه. به نظر شما یادگیری زبان باید هرچه زودتر شروع شود؟',
+        words: [
+            { word: 'as early as possible', meaning: 'هرچه زودتر' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Mr. Saberian',
+        speakerClass: 'speaker-saberian',
+        audio: 'sounds/l1-conv-13.mp3',
+        en: 'My experience says interest and hard work are really more important than age.',
+        fa: 'تجربه من می‌گوید علاقه و سخت‌کوشی واقعاً مهم‌تر از سن هستند.',
+        words: [
+            { word: 'experience', meaning: 'تجربه' },
+            { word: 'interest', meaning: 'علاقه' },
+            { word: 'hard work', meaning: 'سخت‌کوشی / تلاش زیاد' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Meysam',
+        speakerClass: 'speaker-meysam',
+        audio: 'sounds/l1-conv-14.mp3',
+        en: "Hmm... that's an important point. May I know what your favorite language is? English, French, or Russian?",
+        fa: 'اوه... نکته مهمی است. می‌توانم بدانم زبان مورد علاقه شما چیست؟ انگلیسی، فرانسوی یا روسی؟',
+        words: [
+            { word: 'point', meaning: 'نکته' },
+            { word: 'favorite', meaning: 'مورد علاقه' }
+        ]
+    },
+    {
+        type: 'line',
+        speaker: 'Mr. Saberian',
+        speakerClass: 'speaker-saberian',
+        audio: 'sounds/l1-conv-15.mp3',
+        en: 'To be honest, I enjoy using them all, but my favorite language is absolutely my mother tongue!',
+        fa: 'راستش را بخواهید، از استفاده از همه آن‌ها لذت می‌برم، اما زبان مورد علاقه من قطعاً زبان مادری‌ام است!',
+        words: [
+            { word: 'to be honest', meaning: 'راستش را بخواهید' },
+            { word: 'enjoy', meaning: 'لذت بردن' },
+            { word: 'absolutely', meaning: 'قطعاً / کاملاً' }
+        ]
+    }
+];
+
+const TOTAL_CONTENT_STEPS = conversationData.length;
+const END_INDEX = TOTAL_CONTENT_STEPS;
+const TOTAL_STAIRS = conversationData.length + 1;
+
+let currentStep = 0;
+let isStarted = false;
+let isMuted = false;
+let isTransitioning = false;
+let stepTimer = null;
+let audioDelayTimer = null;
+let progressRaf = null;
+let stepStartTime = 0;
+
+const introAudio = new Audio('sounds/intro.mp3');
+introAudio.loop = false;
+
+const lineAudio = new Audio();
+lineAudio.loop = false;
+
+const viewportEl = document.getElementById('viewport');
+const preloaderEl = document.getElementById('preloader');
+const stepCounterEl = document.getElementById('stepCounter');
+const timerBarEl = document.getElementById('timerBar');
+const soundBtnEl = document.getElementById('soundBtn');
+const soundIconEl = document.getElementById('soundIcon');
+const footerHintEl = document.getElementById('footerHint');
+
+function renderStairs() {
+    let html = '';
+
+    conversationData.forEach((item, idx) => {
+        const wordsHtml = item.words.map(w => `
+            <div class="wb-item">
+                <span class="wb-word en">${w.word}</span>
+                <span class="wb-meaning">${w.meaning}</span>
+            </div>
+        `).join('');
+
+        html += `
+            <section class="stair ${idx === 0 ? 'active' : ''}" data-index="${idx}" id="stair-${idx}">
+                <div class="stair-inner">
+                    <article class="step-card">
+                        <div class="step-top">
+                            <span class="speaker-pill ${item.speakerClass}">${item.speaker}</span>
+                            <span class="audio-status" id="audioStatus-${idx}">
+                                <span class="audio-dot"></span>
+                                <span class="status-text">آماده</span>
+                            </span>
+                        </div>
+                        <p class="line-en">${item.en}</p>
+                        <p class="line-fa">${item.fa}</p>
+                    </article>
+
+                    <aside class="word-bank">
+                        <div class="wb-header">
+                            <span class="ico" style="-webkit-mask-image:url('icons/book-open-solid.svg');mask-image:url('icons/book-open-solid.svg')"></span>
+                            <span>بانک کلمات این بخش</span>
+                        </div>
+                        <div class="wb-list">${wordsHtml}</div>
+                    </aside>
+                </div>
+            </section>
+        `;
+    });
+
+    html += `
+        <section class="stair" data-index="${END_INDEX}" id="stair-${END_INDEX}">
+            <div class="stair-inner">
+                <div class="end-card">
+                    <h2 class="end-title">پایان مکالمه درس اول</h2>
+                    <p class="end-desc">مکالمه بخش اول را کامل مرور کردید. می‌توانید دوباره شروع کنید یا به منوی درس بازگردید.</p>
+                    <div class="end-actions">
+                        <button type="button" class="btn-primary" onclick="restartConversation()">
+                            <span class="ico" style="-webkit-mask-image:url('icons/rotate-right-solid.svg');mask-image:url('icons/rotate-right-solid.svg')"></span>
+                            <span>شروع دوباره</span>
+                        </button>
+                        <a href="../lesson-1/lesson1-menu.html" class="btn-secondary">
+                            <span class="ico" style="-webkit-mask-image:url('icons/arrow-right-solid.svg');mask-image:url('icons/arrow-right-solid.svg')"></span>
+                            <span>بازگشت به منوی درس</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+
+    viewportEl.innerHTML = html;
+    updateCounter();
+}
+
+function updateCounter() {
+    if (currentStep >= END_INDEX) {
+        stepCounterEl.textContent = `${TOTAL_CONTENT_STEPS} / ${TOTAL_CONTENT_STEPS}`;
+    } else {
+        stepCounterEl.textContent = `${currentStep + 1} / ${TOTAL_CONTENT_STEPS}`;
+    }
+}
+
+function setStartSound(enableSound) {
+    isMuted = !enableSound;
+    document.getElementById('optSoundOn').classList.toggle('active', enableSound);
+    document.getElementById('optSoundOff').classList.toggle('active', !enableSound);
+    syncSoundUI();
+}
+
+function syncSoundUI() {
+    soundBtnEl.classList.toggle('muted', isMuted);
+    soundIconEl.style.webkitMaskImage = isMuted
+        ? "url('icons/volume-xmark-solid.svg')"
+        : "url('icons/volume-high-solid.svg')";
+    soundIconEl.style.maskImage = isMuted
+        ? "url('icons/volume-xmark-solid.svg')"
+        : "url('icons/volume-high-solid.svg')";
+}
+
+function stopAllAudio() {
+    clearTimeout(audioDelayTimer);
+    audioDelayTimer = null;
+    try {
+        introAudio.pause();
+        introAudio.currentTime = 0;
+    } catch (_) {}
+    try {
+        lineAudio.pause();
+        lineAudio.currentTime = 0;
+    } catch (_) {}
+    document.querySelectorAll('.audio-status').forEach(el => {
+        el.classList.remove('playing');
+        const txt = el.querySelector('.status-text');
+        if (txt) txt.textContent = isMuted ? 'بی‌صدا' : 'آماده';
+    });
+}
+
+function setStepAudioStatus(index, stateText, isPlaying) {
+    const el = document.getElementById(`audioStatus-${index}`);
+    if (!el) return;
+    el.classList.toggle('playing', Boolean(isPlaying));
+    const txt = el.querySelector('.status-text');
+    if (txt) txt.textContent = stateText;
+}
+
+function scheduleLineAudio(index) {
+    stopAllAudio();
+    if (index < 0 || index >= TOTAL_CONTENT_STEPS) return;
+    if (isMuted) {
+        setStepAudioStatus(index, 'بی‌صدا', false);
+        return;
+    }
+
+    setStepAudioStatus(index, 'تاخیر ۰.۵ ثانیه...', false);
+
+    audioDelayTimer = setTimeout(() => {
+        if (!isStarted || currentStep !== index || isMuted) return;
+        const item = conversationData[index];
+        lineAudio.src = item.audio;
+        lineAudio.load();
+
+        lineAudio.onplay = () => {
+            if (currentStep === index) {
+                setStepAudioStatus(index, 'در حال پخش', true);
+            }
+        };
+        lineAudio.onended = () => {
+            if (currentStep === index) {
+                setStepAudioStatus(index, 'پخش شد', false);
+            }
+        };
+        lineAudio.onerror = () => {
+            if (currentStep === index) {
+                setStepAudioStatus(index, 'فایل ناموجود', false);
+            }
+        };
+
+        lineAudio.play().catch(() => {
+            if (currentStep === index) {
+                setStepAudioStatus(index, 'فایل ناموجود', false);
+            }
+        });
+    }, AUDIO_DELAY_MS);
+}
+
+function clearAutoCycle() {
+    clearTimeout(stepTimer);
+    stepTimer = null;
+    cancelAnimationFrame(progressRaf);
+    progressRaf = null;
+    timerBarEl.style.width = '0%';
+}
+
+function startAutoCycle() {
+    clearAutoCycle();
+    if (!isStarted || currentStep >= END_INDEX) return;
+
+    stepStartTime = performance.now();
+
+    const tickProgress = (now) => {
+        if (!isStarted || currentStep >= END_INDEX) return;
+        const elapsed = now - stepStartTime;
+        const pct = Math.min((elapsed / STEP_MS) * 100, 100);
+        timerBarEl.style.width = `${pct}%`;
+        if (elapsed < STEP_MS) {
+            progressRaf = requestAnimationFrame(tickProgress);
+        }
+    };
+
+    progressRaf = requestAnimationFrame(tickProgress);
+
+    stepTimer = setTimeout(() => {
+        if (isStarted && currentStep < END_INDEX) {
+            goToStep(currentStep + 1);
+        }
+    }, STEP_MS);
+}
+
+function goToStep(targetIndex) {
+    if (targetIndex < 0 || targetIndex >= TOTAL_STAIRS || targetIndex === currentStep || isTransitioning) {
+        return;
+    }
+
+    isTransitioning = true;
+    clearAutoCycle();
+    stopAllAudio();
+
+    const prevIndex = currentStep;
+    currentStep = targetIndex;
+
+    const stairs = document.querySelectorAll('.stair');
+    stairs.forEach((stair, idx) => {
+        stair.classList.remove('active', 'prev');
+        if (idx === currentStep) {
+            stair.classList.add('active');
+            const inner = stair.querySelector('.stair-inner');
+            if (inner) inner.scrollTop = 0;
+        } else if (idx < currentStep) {
+            stair.classList.add('prev');
+        }
+    });
+
+    updateCounter();
+    footerHintEl.style.opacity = currentStep >= END_INDEX ? '0' : '0.8';
+
+    if (currentStep < END_INDEX) {
+        scheduleLineAudio(currentStep);
+        startAutoCycle();
+    } else {
+        clearAutoCycle();
+    }
+
+    setTimeout(() => {
+        isTransitioning = false;
+    }, 520);
+}
+
+function toggleSound() {
+    isMuted = !isMuted;
+    syncSoundUI();
+
+    if (isMuted) {
+        stopAllAudio();
+    } else if (isStarted && currentStep < END_INDEX) {
+        scheduleLineAudio(currentStep);
+    }
+}
+
+function startExperience() {
+    if (isStarted) return;
+    isStarted = true;
+    syncSoundUI();
+
+    if (!isMuted) {
+        introAudio.currentTime = 0;
+        introAudio.play().catch(() => {});
+    }
+
+    preloaderEl.classList.add('hidden');
+
+    setTimeout(() => {
+        scheduleLineAudio(0);
+        startAutoCycle();
+    }, 350);
+}
+
+function restartConversation() {
+    clearAutoCycle();
+    stopAllAudio();
+
+    currentStep = 0;
+    const stairs = document.querySelectorAll('.stair');
+    stairs.forEach((stair, idx) => {
+        stair.classList.remove('active', 'prev');
+        if (idx === 0) {
+            stair.classList.add('active');
+            const inner = stair.querySelector('.stair-inner');
+            if (inner) inner.scrollTop = 0;
+        }
+    });
+
+    updateCounter();
+    footerHintEl.style.opacity = '0.8';
+
+    if (!isMuted) {
+        introAudio.currentTime = 0;
+        introAudio.play().catch(() => {});
+    }
+
+    scheduleLineAudio(0);
+    startAutoCycle();
+}
+
+/* Scroll, Wheel, Touch & Keyboard Staircase Navigation */
+let wheelLock = false;
+window.addEventListener('wheel', (e) => {
+    if (!isStarted || isTransitioning || wheelLock) return;
+    if (Math.abs(e.deltaY) < 18) return;
+
+    const activeInner = document.querySelector('.stair.active .stair-inner');
+    if (activeInner) {
+        const atTop = activeInner.scrollTop <= 1;
+        const atBottom = Math.ceil(activeInner.scrollTop + activeInner.clientHeight) >= activeInner.scrollHeight - 1;
+        if (e.deltaY > 0 && !atBottom) return;
+        if (e.deltaY < 0 && !atTop) return;
+    }
+
+    wheelLock = true;
+    if (e.deltaY > 0 && currentStep < TOTAL_STAIRS - 1) {
+        goToStep(currentStep + 1);
+    } else if (e.deltaY < 0 && currentStep > 0) {
+        goToStep(currentStep - 1);
+    }
+
+    setTimeout(() => {
+        wheelLock = false;
+    }, 550);
+}, { passive: true });
+
+let touchStartY = 0;
+window.addEventListener('touchstart', (e) => {
+    if (!e.touches.length) return;
+    touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+window.addEventListener('touchend', (e) => {
+    if (!isStarted || isTransitioning || !e.changedTouches.length) return;
+    const deltaY = touchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(deltaY) < 45) return;
+
+    const activeInner = document.querySelector('.stair.active .stair-inner');
+    if (activeInner) {
+        const atTop = activeInner.scrollTop <= 1;
+        const atBottom = Math.ceil(activeInner.scrollTop + activeInner.clientHeight) >= activeInner.scrollHeight - 1;
+        if (deltaY > 0 && !atBottom) return;
+        if (deltaY < 0 && !atTop) return;
+    }
+
+    if (deltaY > 0 && currentStep < TOTAL_STAIRS - 1) {
+        goToStep(currentStep + 1);
+    } else if (deltaY < 0 && currentStep > 0) {
+        goToStep(currentStep - 1);
+    }
+}, { passive: true });
+
+window.addEventListener('keydown', (e) => {
+    if (!isStarted || isTransitioning) return;
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+        if (currentStep < TOTAL_STAIRS - 1) goToStep(currentStep + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        if (currentStep > 0) goToStep(currentStep - 1);
+    }
+});
+
+renderStairs();
+syncSoundUI();
+</script>
+</body>
+</html>
